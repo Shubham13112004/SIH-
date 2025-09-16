@@ -1,0 +1,143 @@
+:root {
+    --primary: #1a6fa0;
+    --secondary: #17a2b8;
+    --accent: #28a745;
+    --light-blue: #e3f2fd;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.navbar {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="400" viewBox="0 0 2000 400"><rect width="2000" height="400" fill="%231a6fa0"/><path d="M0,200 Q500,100 1000,200 T2000,200 L2000,400 L0,400 Z" fill="%2317a2b8"/><path d="M0,250 Q500,150 1000,250 T2000,250 L2000,400 L0,400 Z" fill="%2328a745" opacity="0.3"/></svg>') no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 5rem 0;
+    margin-bottom: 2rem;
+}
+
+.card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    margin-bottom: 20px;
+    border: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.section-title {
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.input-group-text {
+    background-color: var(--light-blue);
+}
+
+.language-selector {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.result-box {
+    background-color: var(--light-blue);
+    border-left: 4px solid var(--primary);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.water-drop {
+    display: inline-block;
+    animation: drip 2s infinite;
+}
+
+@keyframes drip {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+    100% { transform: translateY(0); }
+}
+
+.tab-pane {
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+}
+
+.nav-tabs .nav-link.active {
+    background: linear-gradient(to bottom, var(--light-blue), white);
+    font-weight: 600;
+}
+
+.progress-bar {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+}
+
+.recommendation-card {
+    border-left: 4px solid var(--accent);
+}
+
+.cost-analysis {
+    background-color: #f8fff9;
+    border-left: 4px solid var(--accent);
+}
+
+/* New styles for the savings calculator */
+#savings-calculator {
+    scroll-margin-top: 80px;
+}
+
+.savings-card {
+    border-left: 4px solid var(--accent);
+}
+
+/* Animation for the savings results */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#savingsResults {
+    animation: fadeIn 1s ease-in;
+}
