@@ -47,6 +47,7 @@ body {
     transition: transform 0.3s;
     margin-bottom: 20px;
     border: none;
+    min-height: 295px; /* Increased card height by 35% */
 }
 
 .card:hover {
@@ -84,6 +85,15 @@ body {
     font-size: 2.5rem;
     color: var(--primary);
     margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 110px; /* Increased height for the container by 35% */
+}
+
+.feature-img {
+    max-height: 110px; /* Increased image size by 35% */
+    width: auto;
 }
 
 .input-group-text {
@@ -141,7 +151,6 @@ body {
     border-left: 4px solid var(--accent);
 }
 
-/* New styles for the savings calculator */
 #savings-calculator {
     scroll-margin-top: 80px;
 }
@@ -150,7 +159,6 @@ body {
     border-left: 4px solid var(--accent);
 }
 
-/* Animation for the savings results */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -160,5 +168,5 @@ body {
     animation: fadeIn 1s ease-in;
 }
 #hydroCard {
-    border-left: 4px solid #17a2b8; /* --info color */
+    border-left: 4px solid #17a2b8;
 }

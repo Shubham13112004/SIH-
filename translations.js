@@ -19,6 +19,10 @@ const translations = {
     feature2Text: "Calculate rainwater harvesting potential based on roof area, rainfall data, and other factors.",
     feature3Title: "Structure Recommendations",
     feature3Text: "Receive customized recommendations for recharge structures based on your specific situation.",
+    feature4Title: "Interactive GIS Mapping",
+    feature4Text: "Visually draw your rooftop and open spaces on a satellite map for precise area calculation.",
+    feature5Title: "Custom Pipelining Plan",
+    feature5Text: "Get a customized plan for the pipe layout from your rooftop to the recharge or storage unit.",
     // Assessment Form
     assessmentTitle: "Rainwater Harvesting Assessment",
     tabBasic: "Basic Info & Map",
@@ -37,8 +41,7 @@ const translations = {
     btnNext: "Next",
     btnPrevious: "Previous",
     btnCalculate: "Calculate Potential",
-     searchLocation: "Search",
-    // ... add all other keys for every piece of text
+    searchLocation: "Search",
   },
   hi: {
     // Navbar & Hero
@@ -58,6 +61,10 @@ const translations = {
     feature2Text: "छत के क्षेत्र, वर्षा के आंकड़ों और अन्य कारकों के आधार पर वर्षा जल संचयन क्षमता की गणना करें।",
     feature3Title: "संरचना सिफारिशें",
     feature3Text: "अपनी विशिष्ट स्थिति के आधार पर पुनर्भरण संरचनाओं के लिए अनुकूलित सिफारिशें प्राप्त करें।",
+    feature4Title: "इंटरैक्टिव जीआईएस मैपिंग",
+    feature4Text: "सटीक क्षेत्र गणना के लिए सैटेलाइट मानचित्र पर अपनी छत और खुली जगहों को बनाएं।",
+    feature5Title: "कस्टम पाइपलाइनिंग योजना",
+    feature5Text: "अपनी छत से रिचार्ज या भंडारण इकाई तक पाइप लेआउट के लिए एक अनुकूलित योजना प्राप्त करें।",
     // Assessment Form
     assessmentTitle: "वर्षा जल संचयन मूल्यांकन",
     tabBasic: "बुनियादी जानकारी और नक्शा",
@@ -77,7 +84,6 @@ const translations = {
     btnPrevious: "पिछला",
     btnCalculate: "क्षमता की गणना करें",
     searchLocation: "खोजें",
-    // ... add all other keys
   },
   mr: {
     // Navbar & Hero
@@ -97,6 +103,10 @@ const translations = {
     feature2Text: "छताचे क्षेत्रफळ, पर्जन्यमानाचा डेटा आणि इतर घटकांवर आधारित पर्जन्यजल संचयन क्षमतेची गणना करा.",
     feature3Title: "संरचना शिफारसी",
     feature3Text: "तुमच्या विशिष्ट परिस्थितीनुसार पुनर्भरण संरचनांसाठी सानुकूलित शिफारसी मिळवा.",
+    feature4Title: "परस्परसंवादी जीआयएस मॅपिंग",
+    feature4Text: "अचूक क्षेत्रफळ मोजणीसाठी उपग्रह नकाशावर आपले छत आणि मोकळ्या जागा काढा.",
+    feature5Title: "सानुकूल पाइपलाइनिंग योजना",
+    feature5Text: "आपल्या छतापासून रिचार्ज किंवा स्टोरेज युनिटपर्यंत पाइप लेआउटसाठी सानुकूलित योजना मिळवा.",
     // Assessment Form
     assessmentTitle: "पर्जन्यजल संचयन मूल्यांकन",
     tabBasic: "मूलभूत माहिती आणि नकाशा",
@@ -116,10 +126,8 @@ const translations = {
     btnPrevious: "मागे",
     btnCalculate: "क्षमतेची गणना करा",
     searchLocation: "शोधा",
-    // ... add all other keys
   },
-
-ta: {
+  ta: {
     // Navbar & Hero
     navTitle: "மழைநீர் சேகரிப்பு கருவி",
     navHome: "முகப்பு",
@@ -137,6 +145,10 @@ ta: {
     feature2Text: "கூரை பகுதி, மழைப்பொழிவு தரவு மற்றும் பிற காரணிகளின் அடிப்படையில் மழைநீர் சேகரிப்பு திறனைக் கணக்கிடுங்கள்.",
     feature3Title: "கட்டமைப்பு பரிந்துரைகள்",
     feature3Text: "உங்கள் குறிப்பிட்ட சூழ்நிலையின் அடிப்படையில் ரீசார்ஜ் கட்டமைப்புகளுக்கான தனிப்பயனாக்கப்பட்ட பரிந்துரைகளைப் பெறுங்கள்.",
+    feature4Title: "ஊடாடும் ஜிஐஎஸ் வரைபடம்",
+    feature4Text: "துல்லியமான பகுதி கணக்கீட்டிற்காக செயற்கைக்கோள் வரைபடத்தில் உங்கள் கூரை மற்றும் திறந்த வெளிகளை வரையவும்.",
+    feature5Title: "தனிப்பயன் குழாய் திட்டம்",
+    feature5Text: "உங்கள் கூரையிலிருந்து ரீசார்ஜ் அல்லது சேமிப்பு அலகுக்கு குழாய் அமைப்பிற்கான தனிப்பயனாக்கப்பட்ட திட்டத்தைப் பெறுங்கள்.",
     // Assessment Form
     assessmentTitle: "மழைநீர் சேகரிப்பு மதிப்பீடு",
     tabBasic: "அடிப்படை தகவல் & வரைபடம்",
@@ -175,6 +187,10 @@ ta: {
     feature2Text: "పైకప్పు ప్రాంతం, వర్షపాతం డేటా మరియు ఇతర కారకాల ఆధారంగా వర్షపు నీటి సేకరణ సామర్థ్యాన్ని లెక్కించండి.",
     feature3Title: "నిర్మాణ సిఫార్సులు",
     feature3Text: "మీ నిర్దిష్ట పరిస్థితి ఆధారంగా రీఛార్జ్ నిర్మాణాల కోసం అనుకూలీకరించిన సిఫార్సులను స్వీకరించండి.",
+    feature4Title: "ఇంటరాక్టివ్ GIS మ్యాపింగ్",
+    feature4Text: "ఖచ్చితమైన ప్రాంతం గణన కోసం ఉపగ్రహ మ్యాప్‌లో మీ పైకప్పు మరియు ఖాళీ స్థలాలను గీయండి.",
+    feature5Title: "అనుకూల పైప్‌లైనింగ్ ప్రణాళిక",
+    feature5Text: "మీ పైకప్పు నుండి రీఛార్జ్ లేదా నిల్వ యూనిట్‌కు పైప్ లేఅవుట్ కోసం అనుకూలీకరించిన ప్రణాళికను పొందండి.",
     // Assessment Form
     assessmentTitle: "వర్షపు నీటి సేకరణ అంచనా",
     tabBasic: "ప్రాథమిక సమాచారం & మ్యాప్",
@@ -213,6 +229,10 @@ ta: {
     feature2Text: "ছাদের ক্ষেত্রফল, বৃষ্টির ডেটা এবং অন্যান্য কারণের উপর ভিত্তি করে বৃষ্টির জল সংগ্রহের সম্ভাবনা গণনা করুন।",
     feature3Title: "কাঠামোগত সুপারিশ",
     feature3Text: "আপনার নির্দিষ্ট পরিস্থিতির উপর ভিত্তি করে রিচার্জ কাঠামোর জন্য কাস্টমাইজড সুপারিশ গ্রহণ করুন।",
+    feature4Title: "ইন্টারেক্টিভ জিআইএস ম্যাপিং",
+    feature4Text: "সুনির্দিষ্ট এলাকা গণনার জন্য স্যাটেলাইট ম্যাপে আপনার ছাদ এবং খোলা জায়গা আঁকুন।",
+    feature5Title: "কাস্টম পাইপলাইনিং পরিকল্পনা",
+    feature5Text: "আপনার ছাদ থেকে রিচার্জ বা স্টোরেজ ইউনিটে পাইপ লেআউটের জন্য একটি কাস্টমাইজড পরিকল্পনা পান।",
     // Assessment Form
     assessmentTitle: "বৃষ্টির জল সংগ্রহ মূল্যায়ন",
     tabBasic: "মৌলিক তথ্য ও মানচিত্র",
@@ -231,6 +251,6 @@ ta: {
     btnNext: "পরবর্তী",
     btnPrevious: "পূর্ববর্তী",
     btnCalculate: "সম্ভাবনা গণনা করুন",
-    searchLocation: "অনুসন্ধان করুন",
+    searchLocation: "অনুসন্ধান করুন",
   },
 };

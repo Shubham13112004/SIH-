@@ -55,8 +55,9 @@
     <section class="py-5">
         <div class="container">
             <h2 class="text-center section-title" data-i18n-key="keyFeatures">Key Features</h2>
-            <div class="row">
-                <div class="col-md-4">
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card text-center h-100">
                         <div class="card-body">
                             <div class="feature-icon">
@@ -67,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card text-center h-100">
                         <div class="card-body">
                             <div class="feature-icon">
@@ -78,7 +79,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card text-center h-100">
                         <div class="card-body">
                             <div class="feature-icon">
@@ -86,6 +87,31 @@
                             </div>
                             <h4 class="card-title" data-i18n-key="feature3Title">Structure Recommendations</h4>
                             <p class="card-text" data-i18n-key="feature3Text">Receive customized recommendations for recharge structures based on your specific situation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <img src="fig1.png" alt="GIS Mapping" class="feature-img">
+                            </div>
+                            <h4 class="card-title" data-i18n-key="feature4Title">Interactive GIS Mapping</h4>
+                            <p class="card-text" data-i18n-key="feature4Text">Visually draw your rooftop and open spaces on a satellite map for precise area calculation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <img src="Rainwater Harvesting.jpg" alt="Pipelining Plan" class="feature-img">
+                            </div>
+                            <h4 class="card-title" data-i18n-key="feature5Title">Custom Pipelining Plan</h4>
+                            <p class="card-text" data-i18n-key="feature5Text">Get a customized plan for the pipe layout from your rooftop to the recharge or storage unit.</p>
                         </div>
                     </div>
                 </div>
@@ -134,20 +160,10 @@
                                         </div>
                                         <div class="form-text" data-i18n-key="locationHelpText">Click the button to find your location and enable drawing your roof area on the map.</div>
                                     </div>
-                                <!-- <div class="location-input">
-
-                                    <input type="text" id="manualLocation" placeholder="Enter location (e.g., Pune, India)">
-                                    <button onclick="setManualLocation()">Search</button>
-                                    <button onclick="getLiveLocation()">Use My Location</button>
-                                </div> -->
-
-                                    
                                     <div id="map" style="height: 400px; margin-top: 15px; display: none; border-radius: 8px;"></div>
-                                    
                                     <div id="area-display" class="form-text mt-2" style="display: none; font-size: 1.1em;">
                                         <span data-i18n-key="drawnAreaText">Last Drawn Area:</span> <strong id="calculated-area" class="text-success">0</strong> <span data-i18n-key="sqMeters">sq. meters</span>
                                     </div>
-                                    
                                     <div class="mb-3 mt-3">
                                         <label class="form-label" data-i18n-key="labelDwellers">Number of Dwellers</label>
                                         <input type="number" class="form-control" id="dwellersCount" data-i18n-key-placeholder="placeholderDwellers" placeholder="Enter number of people">
@@ -156,7 +172,6 @@
                                         <button class="btn btn-primary" id="nextToRoofBtn" data-i18n-key="btnNext">Next <i class="fas fa-arrow-right ms-1"></i></button>
                                     </div>
                                 </div>
-                                
                                 <div class="tab-pane fade" id="roof">
                                     <div class="mb-3">
                                         <label class="form-label" data-i18n-key="labelRoofType">Roof Type</label>
@@ -187,7 +202,6 @@
                                         </button>
                                     </div>
                                 </div>
-                                
                                 <div class="tab-pane fade" id="site">
                                     <div class="mb-3">
                                         <label class="form-label" data-i18n-key="labelOpenSpace">Available Open Space (sq. meters)</label>
@@ -242,7 +256,6 @@
     <section class="py-5" id="results" style="display: none;">
         <div class="container">
             <h2 class="text-center section-title" data-i18n-key="resultsTitle">Assessment Results</h2>
-            
             <div class="row mb-4">
                 <div class="col-12">
                     <div class="card">
@@ -256,7 +269,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="row">
                 <div class="col-lg-6">
                                 <div class="card mb-4">
@@ -276,7 +288,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                
                                 <div class="card">
                                     <div class="card-header bg-white">
                                         <h4><i class="fas fa-layer-group me-2 text-success"></i>Groundwater Recharge Engine</h4>
@@ -295,7 +306,6 @@
                                     </div>
                                 </div>
                         </div>
-                
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header bg-white">
@@ -305,7 +315,6 @@
                             <canvas id="rainwaterChart" height="250"></canvas>
                         </div>
                     </div>
-                    
                     <div class="card mt-4">
                         <div class="card-header bg-white">
                             <div class="card mt-4" id="hydroCard">
@@ -345,7 +354,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="row mt-4">
                 <div class="col-12">
                     <div class="card cost-analysis">
@@ -404,7 +412,6 @@
         <div class="container">
             <h2 class="text-center section-title" data-i18n-key="savingsCalcTitle">Water Savings Calculator</h2>
             <p class="text-center mb-4" data-i18n-key="savingsCalcSubtitle">See how much water and money you can save over time with rainwater harvesting</p>
-            
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="card">
@@ -424,18 +431,15 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="text-center mb-4">
                                 <button class="btn btn-primary" id="calculateSavingsBtn" data-i18n-key="btnCalculateSavings">
                                     <i class="fas fa-calculator me-1"></i> Calculate Long-Term Savings
                                 </button>
                             </div>
-                            
                             <div id="savingsResults" style="display: none;">
                                 <div class="result-box mb-4">
                                     <h4 class="text-center" data-i18n-key="projectedSavings">Projected Savings Over Time</h4>
                                 </div>
-                                
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="card text-center mb-3">
@@ -456,11 +460,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                
                                 <div class="mt-4">
                                     <canvas id="savingsChart" height="250"></canvas>
                                 </div>
-                                
                                 <div class="mt-4 text-center">
                                     <button class="btn btn-outline-success" id="shareResultsBtn" data-i18n-key="shareResults">
                                         <i class="fas fa-share-alt me-1"></i> Share These Results
@@ -480,7 +482,6 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <p class="lead text-center" data-i18n-key="aboutSubtitle">This application is designed to promote public participation in groundwater conservation by enabling easy assessment of rainwater harvesting potential.</p>
-                    
                     <div class="accordion mt-5" id="aboutAccordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
@@ -557,19 +558,9 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
-    
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="translations.js"></script>
-    <script src="script.js"></script> -->
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
     <script src="translations.js"></script>
     <script src="script.js"></script>
-
-
-
 </body>
 </html>
