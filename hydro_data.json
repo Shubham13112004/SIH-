@@ -1,0 +1,39 @@
+{
+  "Maharashtra": [
+    {
+      "district": "Pune",
+      "aquifer_type": "Basaltic Lava Flows (Deccan Traps)",
+      "pre_monsoon_depth_m": "5-20",
+      "post_monsoon_depth_m": "2-10",
+      "suitability": "Good potential for recharge through fractures."
+    },
+    {
+      "district": "Mumbai City",
+      "aquifer_type": "Coastal Alluvium & Basalt",
+      "pre_monsoon_depth_m": "3-8",
+      "post_monsoon_depth_m": "1-5",
+      "suitability": "Moderate potential; risk of salinity ingress."
+    },
+    {
+      "district": "Nagpur",
+      "aquifer_type": "Gondwana Sedimentary & Basalt",
+      "pre_monsoon_depth_m": "6-15",
+      "post_monsoon_depth_m": "3-9",
+      "suitability": "Variable potential; weathered zones are favorable."
+    },
+    {
+      "district": "Nashik",
+      "aquifer_type": "Basaltic Lava Flows (Deccan Traps)",
+      "pre_monsoon_depth_m": "8-25",
+      "post_monsoon_depth_m": "4-12",
+      "suitability": "Good potential in weathered and fractured zones."
+    },
+    {
+      "district": "Aurangabad",
+      "aquifer_type": "Basaltic Lava Flows (Deccan Traps)",
+      "pre_monsoon_depth_m": "10-30",
+      "post_monsoon_depth_m": "5-15",
+      "suitability": "Moderate potential, deeper water levels."
+    }
+  ]
+}

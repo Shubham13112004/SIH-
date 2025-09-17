@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-key="appTitle">HYDRO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" data-i18n-key="navTitle">
+                <i class="fas fa-water me-2"></i>Rainwater Harvesting Tool
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home" data-i18n-key="navHome">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#assessment" data-i18n-key="navAssessment">Assessment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#results" data-i18n-key="navResults">Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#savings-calculator" data-i18n-key="navSavings">Savings Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about" data-i18n-key="navAbout">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section" id="home">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-4" data-i18n-key="heroTitle">Assess Your Rainwater Harvesting Potential</h1>
+            <p class="lead mb-4" data-i18n-key="heroSubtitle">A comprehensive tool to evaluate rooftop rainwater harvesting and artificial recharge potential for your location</p>
+            <a href="#assessment" class="btn btn-light btn-lg px-4" data-i18n-key="getStarted">Get Started <i class="fas fa-arrow-right ms-2"></i></a>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center section-title" data-i18n-key="keyFeatures">Key Features</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <h4 class="card-title" data-i18n-key="feature1Title">Location-Based Analysis</h4>
+                            <p class="card-text" data-i18n-key="feature1Text">Get accurate assessments based on your geographic location and local rainfall patterns.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <h4 class="card-title" data-i18n-key="feature2Title">Potential Calculation</h4>
+                            <p class="card-text" data-i18n-key="feature2Text">Calculate rainwater harvesting potential based on roof area, rainfall data, and other factors.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h4 class="card-title" data-i18n-key="feature3Title">Structure Recommendations</h4>
+                            <p class="card-text" data-i18n-key="feature3Text">Receive customized recommendations for recharge structures based on your specific situation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light" id="assessment">
+        <div class="container">
+            <h2 class="text-center section-title" data-i18n-key="assessmentTitle">Rainwater Harvesting Assessment</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-header bg-white">
+                            <ul class="nav nav-tabs card-header-tabs" id="assessmentTabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic" data-i18n-key="tabBasic">Basic Info & Map</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="roof-tab" data-bs-toggle="tab" data-bs-target="#roof" data-i18n-key="tabRoof">Roof Details</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="site-tab" data-bs-toggle="tab" data-bs-target="#site" data-i18n-key="tabSite">Site Conditions</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="assessmentTabsContent">
+                                <div class="tab-pane fade show active" id="basic">
+                                    <div class="mb-3">
+                                        <label class="form-label" data-i18n-key="labelName">Full Name</label>
+                                        <input type="text" class="form-control" id="userName" data-i18n-key-placeholder="placeholderName" placeholder="Enter your name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" data-i18n-key="labelLocation">Location</label>
+                                       <div class="input-group">
+                                            <input type="text" class="form-control" id="userLocation" data-i18n-key-placeholder="placeholderLocation" placeholder="Enter your location">
+                                            
+                                            <button class="btn btn-outline-primary" type="button" id="searchLocationBtn" data-i18n-key="searchLocation">
+                                                <i class="fas fa-search"></i> Search
+                                            </button>
+                                            
+                                            <button class="btn btn-outline-secondary" type="button" id="getLocationBtn" data-i18n-key="useMyLocation">
+                                                <i class="fas fa-map-marker-alt"></i> Use My Location & Draw Roof
+                                            </button>
+                                        </div>
+                                        <div class="form-text" data-i18n-key="locationHelpText">Click the button to find your location and enable drawing your roof area on the map.</div>
+                                    </div>
+                                <!-- <div class="location-input">
+
+                                    <input type="text" id="manualLocation" placeholder="Enter location (e.g., Pune, India)">
+                                    <button onclick="setManualLocation()">Search</button>
+                                    <button onclick="getLiveLocation()">Use My Location</button>
+                                </div> -->
+
+                                    
+                                    <div id="map" style="height: 400px; margin-top: 15px; display: none; border-radius: 8px;"></div>
+                                    
+                                    <div id="area-display" class="form-text mt-2" style="display: none; font-size: 1.1em;">
+                                        <span data-i18n-key="drawnAreaText">Last Drawn Area:</span> <strong id="calculated-area" class="text-success">0</strong> <span data-i18n-key="sqMeters">sq. meters</span>
+                                    </div>
+                                    
+                                    <div class="mb-3 mt-3">
+                                        <label class="form-label" data-i18n-key="labelDwellers">Number of Dwellers</label>
+                                        <input type="number" class="form-control" id="dwellersCount" data-i18n-key-placeholder="placeholderDwellers" placeholder="Enter number of people">
+                                    </div>
+                                    <div class="text-end">
+                                        <button class="btn btn-primary" id="nextToRoofBtn" data-i18n-key="btnNext">Next <i class="fas fa-arrow-right ms-1"></i></button>
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="roof">
+                                    <div class="mb-3">
+                                        <label class="form-label" data-i18n-key="labelRoofType">Roof Type</label>
+                                        <select class="form-select" id="roofType">
+                                            <option value="" selected data-i18n-key="selectRoofType">Select roof type</option>
+                                            <option value="concrete" data-i18n-key="roofTypeConcrete">Concrete</option>
+                                            <option value="metal" data-i18n-key="roofTypeMetal">Metal</option>
+                                            <option value="tiled" data-i18n-key="roofTypeTiled">Tiled</option>
+                                            <option value="thatched" data-i18n-key="roofTypeThatched">Thatched</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" data-i18n-key="labelRoofArea">Roof Area (sq. meters)</label>
+                                        <input type="number" class="form-control" id="roofArea" data-i18n-key-placeholder="placeholderRoofArea" placeholder="Enter roof area or draw on map">
+                                        <div class="form-text" data-i18n-key="roofAreaHelpText">This field is auto-filled when you draw on the map in the 'Basic Info' tab.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" data-i18n-key="labelRainfall">Average Annual Rainfall (mm)</label>
+                                        <input type="number" class="form-control" id="annualRainfall" value="1200">
+                                        <div class="form-text" data-i18n-key="rainfallHelpText">Based on your location, this is the estimated annual rainfall</div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-outline-secondary" id="prevToBasicBtn" data-i18n-key="btnPrevious">
+                                            <i class="fas fa-arrow-left me-1"></i> Previous
+                                        </button>
+                                        <button class="btn btn-primary" id="nextToSiteBtn" data-i18n-key="btnNext">
+                                            Next <i class="fas fa-arrow-right ms-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="site">
+                                    <div class="mb-3">
+                                        <label class="form-label" data-i18n-key="labelOpenSpace">Available Open Space (sq. meters)</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="openSpace" data-i18n-key-placeholder="placeholderOpenSpace" placeholder="Enter available space">
+                                            <button class="btn btn-outline-secondary" type="button" id="drawOpenSpaceBtn" data-i18n-key="drawOnMap">
+                                                <i class="fas fa-drafting-compass"></i> Draw on Map
+                                            </button>
+                                        </div>
+                                         <div class="form-text" data-i18n-key="openSpaceHelpText">Enter manually or click "Draw on Map" and use the tools in the first tab.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" data-i18n-key="labelSoilType">Soil Type</label>
+                                        <select class="form-select" id="soilType">
+                                            <option value="" selected data-i18n-key="selectSoilType">Select soil type</option>
+                                            <option value="sandy" data-i18n-key="soilTypeSandy">Sandy</option>
+                                            <option value="clay" data-i18n-key="soilTypeClay">Clay</option>
+                                            <option value="loamy" data-i18n-key="soilTypeLoamy">Loamy</option>
+                                            <option value="rocky" data-i18n-key="soilTypeRocky">Rocky</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" data-i18n-key="labelWaterTable">Depth to Water Table (meters)</label>
+                                        <input type="number" class="form-control" id="waterTableDepth" data-i18n-key-placeholder="placeholderWaterTable" placeholder="Enter depth if known">
+                                        <div class="form-text" data-i18n-key="waterTableHelpText">Leave blank if unknown - we'll use regional averages</div>
+                                    </div>
+                                    <div class="mb-3">
+                                            <label class="form-label" data-i18n-key="labelAquifer">Principal Aquifer Type</label>
+                                            <input type="text" class="form-control" id="aquiferType" placeholder="Automatically detected..." disabled>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" data-i18n-key="labelGWaterDepth">Regional Water Depth (Pre-Monsoon)</label>
+                                            <input type="text" class="form-control" id="regionalWaterDepth" placeholder="Automatically detected..." disabled>
+                                        </div>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-outline-secondary" id="prevToRoofBtn" data-i18n-key="btnPrevious">
+                                            <i class="fas fa-arrow-left me-1"></i> Previous
+                                        </button>
+                                        <button class="btn btn-success" id="calculatePotentialBtn" data-i18n-key="btnCalculate">
+                                            <i class="fas fa-calculator me-1"></i> Calculate Potential
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" id="results" style="display: none;">
+        <div class="container">
+            <h2 class="text-center section-title" data-i18n-key="resultsTitle">Assessment Results</h2>
+            
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"><span data-i18n-key="summaryFor">Summary for</span> <span id="resultUserName"></span></h4>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" id="feasibilityProgress" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                            </div>
+                            <p class="card-text" id="feasibilityText" data-i18n-key="feasibilityInitialText">Feasibility assessment will appear here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-white">
+                                        <h4><i class="fas fa-tint me-2 text-primary"></i>Rooftop Runoff Engine</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="result-box">
+                                            <h5>Annual Potential Runoff Volume</h5>
+                                            <h3 class="text-primary" id="potentialRunoff">0 <small>Liters</small></h3>
+                                            <p>Total water available from your rooftop annually.</p>
+                                        </div>
+                                        <div class="result-box mt-3">
+                                            <h5>Recommended Storage Tank</h5>
+                                            <h3 class="text-primary" id="storageTankSize">0 <small>Liters</small></h3>
+                                            <p>Sized to meet drinking water needs during dry spells.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card">
+                                    <div class="card-header bg-white">
+                                        <h4><i class="fas fa-layer-group me-2 text-success"></i>Groundwater Recharge Engine</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="result-box">
+                                            <h5>Annual Potential Recharge Volume</h5>
+                                            <h3 class="text-success" id="potentialRecharge">0 <small>Liters</small></h3>
+                                            <p>Water that can be used to replenish the aquifer.</p>
+                                        </div>
+                                        <div class="result-box mt-3">
+                                            <h5>Recommended Recharge Structure</h5>
+                                            <h4 id="recommendedStructure">-</h4>
+                                            <p id="structureDescription">Based on your soil and available space.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header bg-white">
+                            <h4 data-i18n-key="visualizationTitle">Visualization</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="rainwaterChart" height="250"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="card mt-4">
+                        <div class="card-header bg-white">
+                            <div class="card mt-4" id="hydroCard">
+                            <div class="card-header bg-white">
+                                <h4><i class="fas fa-water me-2 text-info"></i>Hydrogeological Information</h4>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Principal Aquifer:</strong> <span id="resultAquiferType">-</span></li>
+                                    <li class="list-group-item"><strong>Pre-Monsoon Depth:</strong> <span id="resultPreMonsoonDepth">~ meters</span></li>
+                                    <li class="list-group-item"><strong>Post-Monsoon Depth:</strong> <span id="resultPostMonsoonDepth">~ meters</span></li>
+                                    <li class="list-group-item"><strong>Recharge Suitability:</strong> <span id="resultSuitability">...</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                            <h4 data-i18n-key="structureDetailsTitle">Recommended Structure Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6 id="structureType">Recharge Pit</h6>
+                                    <ul class="list-unstyled" id="structureDimensions">
+                                        </ul>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h6 data-i18n-key="benefitsTitle">Benefits</h6>
+                                    <ul class="list-unstyled" id="structureBenefits">
+                                        </ul>
+                                </div>
+                            </div>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-outline-primary" id="downloadReportBtn" data-i18n-key="downloadReport">
+                                    <i class="fas fa-download me-1"></i> Download Detailed Report
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card cost-analysis">
+                        <div class="card-header bg-white">
+                            <h4 data-i18n-key="costBenefitAnalysis">Cost-Benefit Analysis</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 data-i18n-key="initialInvestment">Initial Investment</h5>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center" data-i18n-key="costMaterials">
+                                            Materials
+                                            <span id="costMaterials">₹0</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center" data-i18n-key="costLabor">
+                                            Labor
+                                            <span id="costLabor">₹0</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center" data-i18n-key="costMisc">
+                                            Miscellaneous
+                                            <span id="costMisc">₹0</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <strong data-i18n-key="totalCost">Total</strong>
+                                            <strong id="costTotal">₹0</strong>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 data-i18n-key="annualSavings">Annual Savings</h5>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center" data-i18n-key="savingsWaterBill">
+                                            Water bill reduction
+                                            <span id="savingsWater">₹0</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center" data-i18n-key="savingsTanker">
+                                            Reduced tanker costs
+                                            <span id="savingsTanker">₹0</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <strong data-i18n-key="paybackPeriod">Payback Period</strong>
+                                            <strong id="paybackPeriod">-</strong>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light" id="savings-calculator">
+        <div class="container">
+            <h2 class="text-center section-title" data-i18n-key="savingsCalcTitle">Water Savings Calculator</h2>
+            <p class="text-center mb-4" data-i18n-key="savingsCalcSubtitle">See how much water and money you can save over time with rainwater harvesting</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" data-i18n-key="labelCurrentBill">Current Monthly Water Bill (₹)</label>
+                                        <input type="number" class="form-control" id="currentWaterBill" value="2000">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" data-i18n-key="labelUtilization">Expected Utilization Rate (%)</label>
+                                        <input type="number" class="form-control" id="utilizationRate" value="70" min="0" max="100">
+                                        <div class="form-text" data-i18n-key="utilizationHelpText">Percentage of harvested water you'll actually use</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mb-4">
+                                <button class="btn btn-primary" id="calculateSavingsBtn" data-i18n-key="btnCalculateSavings">
+                                    <i class="fas fa-calculator me-1"></i> Calculate Long-Term Savings
+                                </button>
+                            </div>
+                            
+                            <div id="savingsResults" style="display: none;">
+                                <div class="result-box mb-4">
+                                    <h4 class="text-center" data-i18n-key="projectedSavings">Projected Savings Over Time</h4>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card text-center mb-3">
+                                            <div class="card-body">
+                                                <h5 data-i18n-key="years5">5 Years</h5>
+                                                <h3 class="text-primary" id="savings5Years">₹0</h3>
+                                                <p class="mb-0" data-i18n-key="cumulativeSavings">Cumulative savings</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card text-center mb-3">
+                                            <div class="card-body">
+                                                <h5 data-i18n-key="years10">10 Years</h5>
+                                                <h3 class="text-primary" id="savings10Years">₹0</h3>
+                                                <p class="mb-0" data-i18n-key="cumulativeSavings">Cumulative savings</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <canvas id="savingsChart" height="250"></canvas>
+                                </div>
+                                
+                                <div class="mt-4 text-center">
+                                    <button class="btn btn-outline-success" id="shareResultsBtn" data-i18n-key="shareResults">
+                                        <i class="fas fa-share-alt me-1"></i> Share These Results
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" id="about">
+        <div class="container">
+            <h2 class="text-center section-title" data-i18n-key="aboutTitle">About This Tool</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <p class="lead text-center" data-i18n-key="aboutSubtitle">This application is designed to promote public participation in groundwater conservation by enabling easy assessment of rainwater harvesting potential.</p>
+                    
+                    <div class="accordion mt-5" id="aboutAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" data-i18n-key="accordionHowItWorks">
+                                    How It Works
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show">
+                                <div class="accordion-body" data-i18n-key="accordionHowItWorksText">
+                                    The tool uses scientific algorithms based on CGWB manuals to calculate rainwater harvesting potential. By analyzing your location, roof area, rainfall data, and soil conditions, it provides personalized recommendations for suitable RTRWH structures.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" data-i18n-key="accordionDataSources">
+                                    Data Sources
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse">
+                                <div class="accordion-body" data-i18n-key="accordionDataSourcesText">
+                                    Our calculations are based on data from the Central Ground Water Board (CGWB), Indian Meteorological Department (IMD), and scientific manuals on rooftop rainwater harvesting and artificial recharge.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" data-i18n-key="accordionBenefits">
+                                    Benefits of Rainwater Harvesting
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse">
+                                <div class="accordion-body" data-i18n-key="accordionBenefitsText">
+                                    Rainwater harvesting helps in conserving water, reducing water bills, preventing soil erosion, and most importantly, recharging groundwater aquifers. It's an effective solution for water conservation in both urban and rural areas.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 data-i18n-key="footerTitle">HYDRO</h5>
+                    <p data-i18n-key="footerSubtitle">Empowering communities to conserve water through technology</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p data-i18n-key="footerGuidelines">Developed based on CGWB guidelines</p>
+                    <p data-i18n-key="footerCopyright">©️ 2025 All rights reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="map"></div>
+    <div class="language-selector">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" id="lang-selector-btn" type="button" data-bs-toggle="dropdown">
+                <i class="fas fa-language me-1"></i> English
+            </button>
+            <ul class="dropdown-menu" id="lang-dropdown">
+                <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+                <li><a class="dropdown-item" href="#" data-lang="hi">हिंदी (Hindi)</a></li>
+                <li><a class="dropdown-item" href="#" data-lang="mr">मराठी (Marathi)</a></li>
+                <li><a class="dropdown-item" href="#" data-lang="ta">தமிழ் (Tamil)</a></li>
+                <li><a class="dropdown-item" href="#" data-lang="te">తెలుగు (Telugu)</a></li>
+                <li><a class="dropdown-item" href="#" data-lang="bn">বাংলা (Bengali)</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+    
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="translations.js"></script>
+    <script src="script.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+
+
+
+</body>
+</html>
