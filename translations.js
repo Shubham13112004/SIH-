@@ -3,7 +3,7 @@
 const translations = {
   en: {
     // Navbar & Hero
-    navTitle: "Rainwater Harvesting Tool",
+    navTitle: "HYDRO HARVEST", // Changed here
     navHome: "Home",
     navAssessment: "Assessment",
     navResults: "Results",
@@ -45,7 +45,7 @@ const translations = {
   },
   hi: {
     // Navbar & Hero
-    navTitle: "वर्षा जल संचयन उपकरण",
+    navTitle: "HYDRO HARVEST", // Changed here
     navHome: "होम",
     navAssessment: "मूल्यांकन",
     navResults: "परिणाम",
@@ -87,7 +87,7 @@ const translations = {
   },
   mr: {
     // Navbar & Hero
-    navTitle: "पर्जन्यजल संचयन साधन",
+    navTitle: "HYDRO HARVEST", // Changed here
     navHome: "मुख्यपृष्ठ",
     navAssessment: "मूल्यांकन",
     navResults: "निकाल",
@@ -127,9 +127,10 @@ const translations = {
     btnCalculate: "क्षमतेची गणना करा",
     searchLocation: "शोधा",
   },
-  ta: {
+
+ta: {
     // Navbar & Hero
-    navTitle: "மழைநீர் சேகரிப்பு கருவி",
+    navTitle: "HYDRO HARVEST", // Changed here
     navHome: "முகப்பு",
     navAssessment: "மதிப்பீடு",
     navResults: "முடிவுகள்",
@@ -171,7 +172,7 @@ const translations = {
   },
   te: {
     // Navbar & Hero
-    navTitle: "వర్షపు నీటి సేకరణ సాధనం",
+    navTitle: "HYDRO HARVEST", // Changed here
     navHome: "హోమ్",
     navAssessment: "అంచనా",
     navResults: "ఫలితాలు",
@@ -213,7 +214,7 @@ const translations = {
   },
   bn: {
     // Navbar & Hero
-    navTitle: "বৃষ্টির জল সংগ্রহ টুল",
+    navTitle: "HYDRO HARVEST", // Changed here
     navHome: "হোম",
     navAssessment: "মূল্যায়ন",
     navResults: "ফলাফল",
