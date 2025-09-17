@@ -1,61 +1,3 @@
-// // Initialize Leaflet map
-// var map = L.map('map').setView([18.5204, 73.8567], 10); // Default: Pune
-
-// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//     attribution: '© OpenStreetMap'
-// }).addTo(map);
-
-// // Function for manual input location
-// function setManualLocation() {
-//     let location = document.getElementById("manualLocation").value;
-//     if (!location) {
-//         alert("Please enter a location!");
-//         return;
-//     }
-
-//     // Use Nominatim (free geocoding API)
-//     fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${location}`)
-//         .then(res => res.json())
-//         .then(data => {
-//             if (data.length > 0) {
-//                 let lat = data[0].lat;
-//                 let lon = data[0].lon;
-
-//                 map.setView([lat, lon], 13);
-//                 L.marker([lat, lon]).addTo(map)
-//                     .bindPopup(`<b>${location}</b>`).openPopup();
-//             } else {
-//                 alert("Location not found!");
-//             }
-//         })
-//         .catch(err => console.error(err));
-// }
-
-// // Function for live location
-// function getLiveLocation() {
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(
-//             position => {
-//                 let lat = position.coords.latitude;
-//                 let lon = position.coords.longitude;
-
-//                 map.setView([lat, lon], 13);
-//                 L.marker([lat, lon]).addTo(map)
-//                     .bindPopup("<b>You are here!</b>").openPopup();
-//             },
-//             error => {
-//                 alert("Error fetching live location!");
-//                 console.error(error);
-//             }
-//         );
-//     } else {
-//         alert("Geolocation not supported by this browser.");
-//     }
-// }
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
 
 
@@ -490,35 +432,6 @@ function fetchHydroData(districtName) {
         .catch(error => console.error('Error fetching hydro data:', error));
 }
 
-// New function to get and display hydrogeological data
-function fetchHydroData(address) {
-    fetch('hydro_data.json')
-        .then(response => response.json())
-        .then(data => {
-            const districts = data.Maharashtra;
-            // Find the first district that is mentioned in the address string
-            const foundDistrict = districts.find(d => address.toLowerCase().includes(d.district.toLowerCase()));
-            
-            if (foundDistrict) {
-                siteHydroData = foundDistrict; // Store the data
-                document.getElementById('aquiferType').value = siteHydroData.aquifer_type;
-                document.getElementById('regionalWaterDepth').value = `${siteHydroData.pre_monsoon_depth_m} m`;
-                // Also update the main water table input if it's empty
-                if (!document.getElementById('waterTableDepth').value) {
-                    const avgDepth = siteHydroData.pre_monsoon_depth_m.split('-').reduce((a, b) => +a + +b, 0) / 2;
-                    document.getElementById('waterTableDepth').value = avgDepth;
-                }
-            } else {
-                siteHydroData = null; // Reset if no data found
-                document.getElementById('aquiferType').value = 'No data for this specific area.';
-                document.getElementById('regionalWaterDepth').value = 'N/A';
-            }
-        })
-        .catch(error => console.error('Error fetching hydro data:', error));
-}
-
-
-
 function showError(error) {
 
 userLocationInput.placeholder = "Enter your location";
@@ -544,120 +457,47 @@ setTimeout(() => errorDiv.remove(), 5000);
 }
 
 
-// --- IMD API Function ---
+// --- API Function for Rainfall Data ---
 
 async function fetchAnnualRainfall(lat, lon) {
-
-// IMPORTANT: Paste your registered IMD API Key here.
-
-const imdApiKey = "sk-live-4EBAfojZSGSB1OBbT4x8N9admDl0sqL0HUuvz9lo"; // <-- PASTE YOUR IMD API KEY HERE
-
-
-
-if (!imdApiKey) {
-
-console.error("IMD API key is missing.");
-
-annualRainfallInput.value = '1200'; // Revert to default
-
-annualRainfallText.textContent = 'IMD API key not provided. Using a default value.';
-
-return;
-
-}
-
-
-
-annualRainfallInput.value = '';
-
-annualRainfallText.textContent = 'Fetching historical rainfall data from IMD...';
-
-
-
-const currentYear = new Date().getFullYear();
-
-const startDate = `${currentYear - 6}-01-01`;
-
-const endDate = `${currentYear - 1}-12-31`;
-
-
-
-// NOTE: This is a representative URL. Please adjust based on official IMD documentation.
-
-const apiUrl = `https://api.imd.gov.in/v1/climate/daily-rainfall?lat=${lat}&lon=${lon}&start=${startDate}&end=${endDate}`;
-
-
-
-try {
-
-const response = await fetch(apiUrl, {
-
-headers: {
-
-// Assuming the key is sent in a header. Adjust if it's a query parameter.
-
-'apikey': imdApiKey
-
-}
-
-});
-
-
-
-if (!response.ok) {
-
-throw new Error(`API responded with status: ${response.status}`);
-
-}
-
-const data = await response.json();
-
-
-// NOTE: This logic assumes a specific JSON structure. Adjust based on the actual IMD API response.
-
-// Example structure: { "data": [{"date": "2020-01-01", "rainfall_mm": 5.2}, ...] }
-
-if (!data.data || !Array.isArray(data.data)) {
-
-throw new Error('Invalid data structure from IMD API.');
-
-}
-
-
-
-const totalPrecipitation = data.data.reduce((sum, day) => sum + (day.rainfall_mm || 0), 0);
-
-
-const numberOfYears = 5;
-
-const averageRainfall = totalPrecipitation / numberOfYears;
-
-
-
-if (averageRainfall > 0) {
-
-annualRainfallInput.value = Math.round(averageRainfall);
-
-annualRainfallText.textContent = `Data from IMD (5-year avg). Please verify and edit if needed.`;
-
-} else {
-
-throw new Error('No rainfall data available from IMD for this location.');
-
-}
-
-
-
-} catch (error) {
-
-console.error('Failed to fetch rainfall data from IMD:', error);
-
-annualRainfallInput.value = '1200';
-
-annualRainfallText.textContent = 'Could not fetch IMD data. Using a default value.';
-
-}
-
+    annualRainfallText.textContent = 'Fetching historical rainfall data...';
+
+    const currentYear = new Date().getFullYear();
+    const startDate = `${currentYear - 6}-01-01`; // 5 full years of data
+    const endDate = `${currentYear - 1}-12-31`;
+
+    // Open-Meteo API URL for historical daily precipitation
+    const apiUrl = `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${startDate}&end_date=${endDate}&daily=precipitation_sum`;
+
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error(`API responded with status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        if (!data.daily || !data.daily.precipitation_sum) {
+            throw new Error('Invalid data structure from API.');
+        }
+
+        const dailyPrecipitation = data.daily.precipitation_sum;
+        const totalPrecipitation = dailyPrecipitation.reduce((sum, dailyValue) => sum + (dailyValue || 0), 0);
+
+        const numberOfYears = 5;
+        const averageRainfall = totalPrecipitation / numberOfYears;
+
+        if (averageRainfall > 0) {
+            annualRainfallInput.value = Math.round(averageRainfall);
+            annualRainfallText.textContent = `Data from Open-Meteo (5-year avg). Please verify.`;
+        } else {
+            throw new Error('No rainfall data available for this location.');
+        }
+
+    } catch (error) {
+        console.error('Failed to fetch rainfall data:', error);
+        annualRainfallInput.value = '1200'; // Fallback to default
+        annualRainfallText.textContent = 'Could not fetch data. Using a default value.';
+    }
 }
 
 
